@@ -1,6 +1,9 @@
 # EasyDnsApiWrapper
 .Net Core Wrapper Library, for Name.Com API
 
+# API Support
+Currently this is only a wrapper for Name.com API
+
 # Usage
 ```csharp
 class Program
