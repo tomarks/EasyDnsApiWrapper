@@ -6,25 +6,31 @@ Currently this is only a wrapper for Name.com API
 
 # Usage
 ```csharp
-class Program
+using System;
+using EasyDnsLibrary;
+
+namespace Demo
 {
-    static void Main(string[] args)
+    class Program
     {
-        // Create the service helper
-        var svc = EasyDns.NameDotComApiWrapper(" {namedotcom_account_username} ", " {namedotcom_api_key} ");
-
-        // Loop over existing domain records for given domain name
-        foreach (var record in svc.GetDomainRecords(" {your_domain_name} "))
+        static void Main(string[] args)
         {
-            Console.Write($"Update Domain Record {record.DomainName} from {record.Answer} ");
-            record.Answer = svc.MyPublicIP;
-            
-            // Updates record and returns result from API PUT request
-            var resultRecord = svc.UpdateDomainRecord(record);
-            Console.WriteLine($"to {resultRecord.Answer}");
-        }
+            // Create the service helper
+            var svc = EasyDns.NameDotComApiWrapper(" {namedotcom_account_username} ", " {namedotcom_api_key} ");
 
-        Console.ReadKey();
+            // Loop over existing domain records for given domain name
+            foreach (var record in svc.GetDomainRecords(" {your_domain_name} "))
+            {
+                Console.Write($"Update Domain Record {record.DomainName} from {record.Answer} ");
+                record.Answer = svc.MyPublicIP;
+
+                // Updates record and returns result from API PUT request
+                var resultRecord = svc.UpdateDomainRecord(record);
+                Console.WriteLine($"to {resultRecord.Answer}");
+            }
+
+            Console.ReadKey();
+        }
     }
 }
 ```
